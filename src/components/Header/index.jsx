@@ -50,7 +50,7 @@ export default function Header() {
       <div ref={header} className={styles.header}>
         <div className={styles.logo}>
           <p className={styles.copyright}>
-            <Image height={20} width={20} alt={"image"} src={`/images/logo.png`} />
+            <Image height={20} width={20} alt={"image"} src={`https://i.ibb.co/7JgbJKL/logo.png`} />
           </p>
           <div className={styles.name}>
             <p className={styles.codeBy}>Studio</p>

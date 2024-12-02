@@ -23,7 +23,7 @@ export default function Index() {
                             <Image 
                             fill={true}
                             alt={"image"}
-                            src={`/images/logo.png`}
+                            src={`https://i.ibb.co/7JgbJKL/logo.png`}
                             />
                         </div>
                         <h2>Let&apos;s work</h2>
