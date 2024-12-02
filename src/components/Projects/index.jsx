@@ -145,10 +145,11 @@ export default function Home() {
                   style={{ backgroundColor: color }}
                   key={`modal_${index}`}
                 >
-                  <Image
+                  <img
                     src={`/images/${src}`}
-                    width={300}
-                    height={0}
+                    style={{
+                      width: "300px",
+                    }}
                     alt="image"
                   />
                 </div>

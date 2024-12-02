@@ -20,7 +20,7 @@ export default function Index() {
                 <div className={styles.title}>
                     <span>
                         <div className={styles.imageContainer}>
-                            <Image 
+                            <img 
                             fill={true}
                             alt={"image"}
                             src={`https://i.ibb.co/7JgbJKL/logo.png`}
