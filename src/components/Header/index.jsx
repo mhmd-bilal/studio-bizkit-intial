@@ -16,7 +16,17 @@ export default function Header() {
   const pathname = usePathname();
   const button = useRef(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
     if (isActive) setIsActive(false);
   }, [pathname, isActive]);
 
@@ -47,38 +57,45 @@ export default function Header() {
 
   return (
     <>
-      <div ref={header} className={styles.header}>
-        <div className={styles.logo}>
-          <p className={styles.copyright}>
-            <img style={{height:"20px",width:"20px"}} alt={"image"} src={`https://i.ibb.co/7JgbJKL/logo.png`} />
-          </p>
-          <div className={styles.name}>
-            <p className={styles.codeBy}>Studio</p>
-            <p className={styles.dennis}>Bizkit</p>
-            {/* <p className={styles.snellenberg}>Snellenberg</p> */}
+      {isMobile ? null : (
+        <div ref={header} className={styles.header}>
+          <div className={styles.logo}>
+            <p className={styles.copyright}>
+              <img
+                style={{ height: "20px", width: "20px" }}
+                alt={"image"}
+                src={`https://i.ibb.co/7JgbJKL/logo.png`}
+              />
+            </p>
+            <div className={styles.name}>
+              <p className={styles.codeBy}>Studio</p>
+              <p className={styles.dennis}>Bizkit</p>
+              {/* <p className={styles.snellenberg}>Snellenberg</p> */}
+            </div>
+          </div>
+          <div className={styles.nav}>
+            <Magnetic>
+              <div className={styles.el}>
+                <a>Work</a>
+                <div className={styles.indicator}></div>
+              </div>
+            </Magnetic>
+            <Magnetic>
+              <div className={styles.el}>
+                <a>About</a>
+                <div className={styles.indicator}></div>
+              </div>
+            </Magnetic>
+            <Magnetic>
+              <div className={styles.el}>
+                <a>Contact</a>
+                <div className={styles.indicator}></div>
+              </div>
+            </Magnetic>
           </div>
         </div>
-        <div className={styles.nav}>
-          <Magnetic>
-            <div className={styles.el}>
-              <a>Work</a>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
-          <Magnetic>
-            <div className={styles.el}>
-              <a>About</a>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
-          <Magnetic>
-            <div className={styles.el}>
-              <a>Contact</a>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
-        </div>
-      </div>
+      )}
+
       <div ref={button} className={styles.headerButtonContainer}>
         <Rounded
           onClick={() => {
