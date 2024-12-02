@@ -66,7 +66,7 @@ export default function Home() {
         </div>
       </div>
       <div data-scroll data-scroll-speed={0.1} className={styles.description}>
-        <svg
+        {/* <svg
           width="9"
           height="9"
           viewBox="0 0 9 9"
@@ -79,7 +79,7 @@ export default function Home() {
           />
         </svg>
         <p>Freelance</p>
-        <p>Designer & Developer</p>
+        <p>Designer & Developer</p> */}
       </div>
     </motion.main>
   );
