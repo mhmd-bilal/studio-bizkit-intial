@@ -49,7 +49,23 @@ export default function Home() {
             <p className={styles.companyname}>Studio Bizkit</p>
           </div>
         </div>
-        <p>A little undercooked for mobile, but fully baked on the web!</p>
+        <p>
+          A little undercooked for mobile, but fully baked on the web! Till then
+          connect with us at
+        </p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
+          }}
+        >
+          <p>
+            <a href="tel:+919886388133">+91 9886388133</a>
+            <br></br>
+            <a href="mailto:studiobizkit@gmail.com">studiobizkit@gmail.com</a>
+          </p>
+        </div>
       </div>
     );
   }
