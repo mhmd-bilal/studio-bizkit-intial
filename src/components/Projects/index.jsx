@@ -12,21 +12,25 @@ const projects = [
     title: "gymgrub",
     src: "gymgrub.png",
     color: "#6e6d6d",
+    url: "https://www.behance.net/gallery/201566335/UI-Case-Study-Gymgrub-Gym-Food-Delivery-App",
   },
   {
     title: "barbie",
     src: "barbie.png",
     color: "#b0b0b0",
+    url: "https://www.behance.net/gallery/198978565/Branding-Barbie-Mens-Personal-Care-",
   },
   {
     title: "zenly",
     src: "zenly.png",
     color: "#c2c4e5",
+    url: "https://www.behance.net/gallery/193831697/Branding-Zenly-Redefining-workspaces-",
   },
   {
     title: "wildcrown",
     src: "wildcrown.png",
     color: "#000000",
+    url: "https://www.behance.net/gallery/203388027/Wildcrown-Brand-Identity",
   },
 ];
 
@@ -116,6 +120,7 @@ export default function Home() {
             <Project
               index={index}
               title={project.title}
+              url={project.url}
               manageModal={manageModal}
               key={index}
             />

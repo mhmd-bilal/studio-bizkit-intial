@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./style.module.scss";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { slideUp } from "./animation";
@@ -13,6 +13,16 @@ export default function Home() {
   const slider = useRef(null);
   let xPercent = 0;
   let direction = -1;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // Check on initial load
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -38,7 +48,7 @@ export default function Home() {
     gsap.set(firstText.current, { xPercent: xPercent });
     gsap.set(secondText.current, { xPercent: xPercent });
     requestAnimationFrame(animate);
-    xPercent += 0.1 * direction;
+    xPercent += (isMobile ? 20 : 0.08) * direction;
   };
 
   return (
@@ -49,22 +59,33 @@ export default function Home() {
       className={styles.landing}
     >
       <img
-        src="/images/bg.jpg"
+        src={isMobile ? "/images/mobile-overlay.png" : "/images/overlay.png"}
+        alt="overlay"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          position: "absolute",
+          zIndex: "10",
+        }}
+      />
+      <div className={styles.sliderContainer}>
+        <div ref={slider} className={styles.slider}>
+          <p ref={firstText}>creative crumbs -</p>
+          <p ref={secondText}>creative crumbs -</p>
+        </div>
+      </div>
+      <img
+        src={isMobile ? "/images/bg-mobile.png" : "/images/bg.jpg"}
         alt="background"
         style={{
+          zIndex: "-1",
           width: "100%",
           height: "100%",
           objectFit: "cover",
           position: "absolute",
         }}
       />
-
-      {/* <div className={styles.sliderContainer}>
-        <div ref={slider} className={styles.slider}>
-          <p ref={firstText}>creative crumbs -</p>
-          <p ref={secondText}>creative crumbs -</p>
-        </div>
-      </div> */}
       <div data-scroll data-scroll-speed={0.1} className={styles.description}>
         {/* <svg
           width="9"

@@ -31,7 +31,12 @@ export default function Index() {
           <h2>together</h2>
           <motion.div style={{ x }} className={styles.buttonContainer}>
             <Rounded backgroundColor={"#2482ee"} className={styles.button}>
-              <p>Get in touch</p>
+              <a
+                href="mailto:hello@studiobizkit.com"
+                style={{ color: "white" }}
+              >
+                <p>Get in touch</p>
+              </a>
             </Rounded>
           </motion.div>
           <motion.svg
@@ -50,17 +55,26 @@ export default function Index() {
         </div>
         <div className={styles.nav}>
           <Rounded>
-            <p>hello@studiobizkit.com</p>
+            <p>
+              <a
+                href="mailto:hello@studiobizkit.com"
+                style={{ color: "white" }}
+              >
+                hello@studiobizkit.com
+              </a>
+            </p>
           </Rounded>
           <Rounded>
-            <p>+91 72002 74687</p>
+            <a href="tel:+917200274687" style={{ color: "white" }}>
+              <p>+91 72002 74687</p>
+            </a>
           </Rounded>
         </div>
         <div className={styles.info}>
           <div>
             <span>
               <h3>Version</h3>
-              <p>2024 © Edition</p>
+              <p>2025 © Edition</p>
             </span>
           </div>
           <div>
