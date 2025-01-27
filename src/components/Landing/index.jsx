@@ -49,7 +49,7 @@ export default function Home() {
       className={styles.landing}
     >
       <img
-        src="https://i.ibb.co/fdW9cn5/bg.jpg"
+        src="/images/bg.jpg"
         alt="background"
         style={{
           width: "100%",
@@ -59,12 +59,12 @@ export default function Home() {
         }}
       />
 
-      <div className={styles.sliderContainer}>
+      {/* <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
           <p ref={firstText}>creative crumbs -</p>
           <p ref={secondText}>creative crumbs -</p>
         </div>
-      </div>
+      </div> */}
       <div data-scroll data-scroll-speed={0.1} className={styles.description}>
         {/* <svg
           width="9"
