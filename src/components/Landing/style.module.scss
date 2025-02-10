@@ -88,17 +88,17 @@
 
   @media (max-width: 480px) {
     .slider p {
-      font-size: 70px;
+      font-size: 80px;
     }
     .sliderContainer {
-      top: calc(100vh - 600px);
+      top: calc(100vh - 320px);
     }
     .description {
-      font-size: 16px;
+      font-size: 26px;
       top: 45%;
     }
     img {
-      width: 60%;
+      width: 10%;
       height: auto;
     }
   }

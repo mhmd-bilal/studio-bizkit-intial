@@ -19,7 +19,7 @@ export default function Home() {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize(); // Check on initial load
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -56,6 +56,7 @@ export default function Home() {
       variants={slideUp}
       initial="initial"
       animate="enter"
+      custom={isMobile}
       className={styles.landing}
     >
       <img

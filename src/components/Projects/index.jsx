@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
 import Rounded from "../../common/RoundedButton";
+import { CircleArrowOutUpRight, CircleArrowUp } from "lucide-react";
 
 const projects = [
   {
@@ -50,8 +51,40 @@ const scaleAnimation = {
   },
 };
 
+const MobileProjectCard = ({ project, manageModal, isOpen, onClick }) => {
+  const handleClick = () => {
+    onClick();
+    // Add animation class or logic here
+  };
+
+  return (
+    <div
+      className={`${styles.mobileCard} ${isOpen ? styles.expanded : ""}`}
+      onClick={handleClick}
+    >
+      <div
+        className={`${styles.mobileCardImage} ${isOpen ? styles.cover : styles.fit}`}
+        style={{ backgroundImage: `url(/images/${project.src})` }}
+      >
+        <div className={styles.gradientOverlay} />
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.subtitle}>Design & Development</p>
+      </div>
+      {isOpen && (
+        <div className={styles.cta}>
+          <a href={project.url} className={styles.arrow}>
+            <CircleArrowUp style={{ transform: "rotate(45deg)" }} />
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
   const [modal, setModal] = useState({ active: false, index: 0 });
+  const [openCardIndex, setOpenCardIndex] = useState(null);
   const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
@@ -63,6 +96,19 @@ export default function Home() {
   let yMoveCursor = useRef(null);
   let xMoveCursorLabel = useRef(null);
   let yMoveCursorLabel = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   useEffect(() => {
     //Move Container
@@ -106,6 +152,32 @@ export default function Home() {
     moveItems(x, y);
     setModal({ active, index });
   };
+
+  const handleCardClick = index => {
+    if (openCardIndex === index) {
+      window.open(projects[index].url, "_blank"); // Open the URL in a new tab
+    } else {
+      setOpenCardIndex(index);
+    }
+  };
+
+  if (isMobile) {
+    return (
+      <main className={styles.projects}>
+        <div className={styles.body}>
+          {projects.map((project, index) => (
+            <MobileProjectCard
+              key={index}
+              project={project}
+              manageModal={manageModal}
+              isOpen={openCardIndex === index}
+              onClick={() => handleCardClick(index)}
+            />
+          ))}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main

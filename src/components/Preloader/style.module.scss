@@ -1,11 +1,11 @@
 .introduction{
     height: 100vh;
     width: 100vw;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 99;
     background-color: #141516;
     svg{
         position: absolute;
@@ -30,6 +30,22 @@
             background-color: white;
             border-radius: 50%;
             margin-right: 10px;
+            @media (max-width: 768px) {
+                width: 8px;
+                height: 8px;
+                margin-right: 8px;
+            }
+            @media (max-width: 480px) {
+                width: 6px;
+                height: 6px;
+                margin-right: 6px;
+            }
+        }
+        @media (max-width: 768px) {
+            font-size: 32px;
+        }
+        @media (max-width: 480px) {
+            font-size: 24px;
         }
     }
 }

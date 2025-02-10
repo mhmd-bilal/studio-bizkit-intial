@@ -1,11 +1,13 @@
+"use client";
 import styles from "./style.module.scss";
 import Image from "next/image";
 import Rounded from "../../common/RoundedButton";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useScroll, motion, useTransform, useSpring } from "framer-motion";
 import Magnetic from "../../common/Magnetic";
 
 export default function Index() {
+  const [isMobile, setIsMobile] = useState(false);
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -14,6 +16,86 @@ export default function Index() {
   const x = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
   const rotate = useTransform(scrollYProgress, [0, 1], [120, 90]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  if (isMobile) {
+    return (
+      <motion.div style={{ y }} ref={container} className={styles.contact}>
+        <div className={styles.body}>
+          <div className={styles.title}>
+            <span>
+              <div className={styles.imageContainer}>
+                <img
+                  alt={"image"}
+                  style={{ height: "100px", width: "100px" }}
+                  src={`https://i.ibb.co/7JgbJKL/logo.png`}
+                />
+              </div>
+              <h2>Let&apos;s work together</h2>
+            </span>
+          </div>
+          <div className={styles.nav}>
+            <Rounded>
+              <p>
+                <a
+                  href="mailto:hello@studiobizkit.com"
+                  style={{ color: "white" }}
+                >
+                  hello@studiobizkit.com
+                </a>
+              </p>
+            </Rounded>
+            <Rounded>
+              <a href="tel:+917200274687" style={{ color: "white" }}>
+                <p>+91 72002 74687</p>
+              </a>
+            </Rounded>
+          </div>
+          <div className={styles.info}>
+            <div>
+              <span
+                style={{ display: "flex", flexDirection: "column", gap: "3px" }}
+              >
+                <h3>Version</h3>
+                <p>2025 © Edition</p>
+              </span>
+            </div>
+            <div>
+              <span
+                style={{ display: "flex", flexDirection: "column", gap: "3px" }}
+              >
+                <h3>socials</h3>
+                <Magnetic>
+                  <p>Instagram</p>
+                </Magnetic>
+              </span>
+              <Magnetic>
+                <p>Behance</p>
+              </Magnetic>
+              <Magnetic>
+                <p>Dribbble</p>
+              </Magnetic>
+              <Magnetic>
+                <p>Linkedin</p>
+              </Magnetic>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
   return (
     <motion.div style={{ y }} ref={container} className={styles.contact}>
       <div className={styles.body}>

@@ -4,3 +4,9 @@ body{
     cursor: wait;
     background-color: #efefef;
 }
+
+@media (max-width: 768px) {
+  body {
+    background-color: #1c1d21;
+  }
+}
